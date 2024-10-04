@@ -1,0 +1,23 @@
+@tailwind base;
+
+/* Custom CSS */
+:root {
+	--primary: #1a202c;
+	--secondary: #2d3748;
+	--tertiary: #e2e8f0;
+	--quaternary: #edf2f7;
+	--quinary: #f7fafc;
+	--senary: #cbd5e0;
+	--septenary: #a0aec0;
+	--octonary: #718096;
+	--nonary: #4a5568;
+	--denary: #2d3748;
+}
+
+* {
+	scrollbar-width: thin;
+	scrollbar-color: var(--secondary) var(--primary);
+}
+
+@tailwind components;
+@tailwind utilities;
