@@ -1,8 +1,13 @@
 {
-  "name": "tube-dash",
-  "private": true,
-  "version": "0.0.0",
+  "name": "tube-dash-player",
+  "version": "1.0.0",
   "type": "module",
+  "author": "Dylan Cameron <dylancameron@beggars.com> (https://beggars.com)",
+  "description": "A resuable YouTube playlist and player component built with React",
+  "license": "MIT",
+  "main": "dist/tube-dash-player.umd.js",
+  "module": "dist/tube-dash-player.es.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -10,14 +15,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@headlessui/react": "^0.0.0-insiders.2422250",
-    "@heroicons/react": "^2.1.5",
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.7",
     "postcss": "^8.4.47",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwindcss": "^3.4.13"
+  },
+  "peerDependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",

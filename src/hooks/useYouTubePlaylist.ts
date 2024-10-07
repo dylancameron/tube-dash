@@ -1,18 +1,23 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { YouTubeAPIResponse, Video } from "@/types";
+import { YouTubeAPIResponse, YouTubeVideo } from "@/types/types";
 
-const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
-const PLAYLIST_ID = import.meta.env.VITE_YOUTUBE_PLAYLIST_ID;
-
-export const useYouTubePlaylist = () => {
-	const [videos, setVideos] = useState<Video[]>([]);
+export const useYouTubePlaylist = (apiKey?: string, playlistId?: string) => {
+	const [videos, setVideos] = useState<YouTubeVideo[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
 	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
 		const fetchPlaylist = async () => {
 			try {
+				const API_KEY = apiKey || import.meta.env.VITE_YOUTUBE_API_KEY;
+				const PLAYLIST_ID =
+					playlistId || import.meta.env.VITE_YOUTUBE_PLAYLIST_ID;
+
+				if (!API_KEY || !PLAYLIST_ID) {
+					throw new Error("Missing YouTube API Key or Playlist ID");
+				}
+
 				const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=${PLAYLIST_ID}&key=${API_KEY}`;
 				const response = await axios.get<YouTubeAPIResponse>(url);
 
@@ -35,7 +40,7 @@ export const useYouTubePlaylist = () => {
 		};
 
 		fetchPlaylist();
-	}, []);
+	}, [apiKey, playlistId]);
 
 	return { videos, loading, error };
 };

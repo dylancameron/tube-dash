@@ -4,6 +4,10 @@ export default {
 	darkMode: "class",
 	theme: {
 		extend: {
+			gridTemplateColumns: {
+				"auto-1fr": "auto 1fr",
+				"2fr-1fr": "2fr 1fr",
+			},
 			fontFamily: {
 				sans: ["Poppins", "sans-serif"],
 				serif: ["Merriweather", "serif"],
