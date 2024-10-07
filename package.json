@@ -1,13 +1,19 @@
 {
   "name": "tube-dash-player",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "author": "Dylan Cameron <dylancameron@beggars.com> (https://beggars.com)",
   "description": "A resuable YouTube playlist and player component built with React",
   "license": "MIT",
   "main": "dist/tube-dash-player.umd.js",
   "module": "dist/tube-dash-player.es.js",
+  "unpkg": "dist/tube-dash-player.umd.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist/",
+    "umd/",
+    "src/"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
