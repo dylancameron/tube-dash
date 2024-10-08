@@ -62,3 +62,7 @@ pnpm-lock.yaml
 
 # Coverage files from testing frameworks
 coverage/
+
+# Testing
+
+test/
