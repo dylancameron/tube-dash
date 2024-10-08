@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>TubeDashPlayer CDN Test</title>
+	<script src="../dist/tube-dash-player.umd.js"></script>
+</head>
+
+<body>
+	<div id="root"></div>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const apiKey =
+				"AIzaSyBcfNHi4zrm45rPWCKFyezy_3phcjJsn-k"
+			const playlistId = "PLUkpIIjyrx_u7y56VbMBuuMp1ifZlJ4yz"
+
+			const App = () => {
+				return React.createElement(TubeDashPlayer, {
+					apiKey: apiKey,
+					playlistId: playlistId,
+				});
+			};
+
+			const root = ReactDOM.createRoot(document.getElementById('root'));
+			root.render(React.createElement(App));
+		});
+	</script>
+</body>
+
+</html>

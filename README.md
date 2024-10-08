@@ -5,12 +5,12 @@
 ## Table of Contents
 
 1.  [📌 Features](#-features)
-2.  [🛞 Installation](#-installation)
+2.  [🛠️ Installation](#️-installation)
 3.  [💡 Usage](#-usage)
 4.  [🏭 Props](#-props)
 5.  [💻 Development](#-development)
 6.  [🗂️ Folder Structure](#️-structure)
-7.  [License](#license)
+7.  [⛓️‍💥 License](#️-license)
 
 ## 📌 Features
 
@@ -20,7 +20,7 @@
 -   TailwindCSS integration for customizable UI.
 -   Modular architecture for easy component reuse.
 
-## 🛞 Installation
+## 🛠️ Installation
 
 ### NPM
 
@@ -43,7 +43,7 @@ yarn add tube-dash-player
 You can also include the TubeDashPlayer script via CDN:
 
 ```html
-<script src="https://unpkg.com/tube-dash-player@1.2.0/dist/tube-dash-player.umd.js"></script>
+<script src="https://unpkg.com/tube-dash-player@1.2.1/dist/tube-dash-player.umd.js"></script>
 ```
 
 ## 💡 Usage
@@ -76,24 +76,28 @@ If you're using the TubeDashPlayer script via CDN, you can use the component lik
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <script src="https://unpkg.com/tube-dash-player@1.2.0/dist/tube-dash-player.umd.js"></script>
+        <script src="https://unpkg.com/tube-dash-player@1.2.1/dist/tube-dash-player.umd.js"></script>
     </head>
     <body>
         <div id="root"></div>
 
         <script>
-            const apiKey = "YOUR_YOUTUBE_API_KEY";
-            const playlistId = "YOUR_YOUTUBE_PLAYLIST_ID";
+            document.addEventListener("DOMContentLoaded", () => {
+                const apiKey = "AIzaSyBcfNHi4zrm45rPWCKFyezy_3phcjJsn-k";
+                const playlistId = "PLUkpIIjyrx_u7y56VbMBuuMp1ifZlJ4yz";
 
-            const App = () => {
-                return React.createElement(TubeDashPlayer, {
-                    apiKey,
-                    playlistId,
-                });
-            };
+                const App = () => {
+                    return React.createElement(TubeDashPlayer, {
+                        apiKey: apiKey,
+                        playlistId: playlistId,
+                    });
+                };
 
-            const root = ReactDOM.createRoot(document.getElementById("root"));
-            root.render(React.createElement(App));
+                const root = ReactDOM.createRoot(
+                    document.getElementById("root")
+                );
+                root.render(React.createElement(App));
+            });
         </script>
     </body>
 </html>
@@ -181,6 +185,6 @@ The TubeDashPlayer project follows a modular structure for easy scalability and 
  ┗ 📜vite-env.d.ts           # Vite environment types
 ```
 
-## License
+## ⛓️‍💥 License
 
 TubeDashPlayer is open source and available under the [MIT License](LICENSE).
