@@ -7,10 +7,12 @@
 1.  [📌 Features](#-features)
 2.  [🛠️ Installation](#️-installation)
 3.  [💡 Usage](#-usage)
-4.  [🏭 Props](#-props)
-5.  [💻 Development](#-development)
-6.  [🗂️ Folder Structure](#️-structure)
-7.  [⛓️‍💥 License](#️-license)
+4.  [🔐 Security Note](#-security-note)
+5.  [🏭 Props](#-props)
+6.  [💻 Development](#-development)
+7.  [🗂️ Folder Structure](#️-structure)
+8.  [⛓️‍💥 License](#️-license)
+9.  [📝 Changelog](CHANGELOG.md)
 
 ## 📌 Features
 
@@ -43,7 +45,7 @@ yarn add tube-dash-player
 You can also include the TubeDashPlayer script via CDN:
 
 ```html
-<script src="https://unpkg.com/tube-dash-player@1.2.1/dist/tube-dash-player.umd.js"></script>
+<script src="https://unpkg.com/tube-dash-player/dist/tube-dash-player.umd.js"></script>
 ```
 
 ## 💡 Usage
@@ -76,7 +78,7 @@ If you're using the TubeDashPlayer script via CDN, you can use the component lik
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <script src="https://unpkg.com/tube-dash-player@1.2.1/dist/tube-dash-player.umd.js"></script>
+        <script src="https://unpkg.com/tube-dash-player/dist/tube-dash-player.umd.js"></script>
     </head>
     <body>
         <div id="root"></div>
@@ -103,7 +105,40 @@ If you're using the TubeDashPlayer script via CDN, you can use the component lik
 </html>
 ```
 
+## 🔐 Security Note
+
+When using the `TubeDashPlayer`, your **YouTube API key** is exposed on the client-side. This means that anyone who inspects the webpage source or uses browser developer tools can see your API key.
+
+To mitigate this risk:
+
+1.  **Use server-side proxying**: You can set up a backend to proxy requests to the YouTube API, keeping your API key hidden from the frontend.
+2.  **Monitor usage**: Set usage limits on your API key in the Google Cloud Console to prevent abuse.
+3.  **Regenerate keys**: If you notice unauthorized use, regenerate your API key to invalidate the old one.
+
+### Using a Server Proxy (Recommended)
+
+If you need a more secure setup, we recommend proxying requests through a backend. This ensures the API key is not exposed in the client-side code. Here’s an example of how to set up a backend proxy:
+
+```js
+// Example backend API
+app.get("/youtube-playlist", (req, res) => {
+    const apiKey = process.env.YOUTUBE_API_KEY;
+    const playlistId = req.query.playlistId;
+
+    axios
+        .get(`https://www.googleapis.com/youtube/v3/playlistItems`, {
+            params: { part: "snippet", playlistId, key: apiKey },
+        })
+        .then((response) => res.json(response.data))
+        .catch((error) =>
+            res.status(500).json({ error: "Failed to fetch playlist" })
+        );
+});
+```
+
 ## 🏭 Props
+
+The `TubeDashPlayer` component accepts the following props:
 
 ### apiKey
 
@@ -125,6 +160,17 @@ If you're using the TubeDashPlayer script via CDN, you can use the component lik
 
 ```tsx
 <TubeDashPlayer playlistId="YOUR_YOUTUBE_PLAYLIST_ID" />
+```
+
+### theme
+
+-   **Type:** `string`
+-   **Default:** `"light"`
+-   **Description:** The theme of the player. Options are `"light"`, `"dark"`, `"minimal"`, and `"auto"`.
+-   **Usage:**
+
+```tsx
+<TubeDashPlayer theme="dark" />
 ```
 
 ## 💻 Development
@@ -157,34 +203,41 @@ This will create a `dist` folder with the compiled JavaScript and CSS files.
 
 ## 🗂️ Structure
 
-The TubeDashPlayer project follows a modular structure for easy scalability and maintainability. Below is the folder layout:
+The TubeDashPlayer project follows a modular structure for easy scalability and maintainability. Below is the src/ folder layout:
 
 ```bash
 📦src
- ┣ 📂assets        # For images, fonts, etc.
+ ┣ 📂assets                  # For images, fonts, etc.
  ┣ 📂components
- ┃ ┣ 📂common      # Shared components across the app
+ ┃ ┣ 📂common                # Shared components across the app
  ┃ ┃ ┣ 📜Drawers.tsx
+ ┃ ┃ ┣ 📜Skeleton.tsx        # Loading and undefined skeletons
  ┃ ┃ ┗ 📜TruncateText.tsx
- ┃ ┣ 📂player      # Components related to the player
+ ┃ ┣ 📂player                # Components related to the player
  ┃ ┃ ┣ 📜Description.tsx
- ┃ ┃ ┣ 📜Player.tsx
- ┃ ┃ ┗ 📜Playlist.tsx
- ┃ ┗ 📜TubeDashPlayer.tsx   # Main component
+ ┃ ┃ ┣ 📜YouTubePlayer.tsx
+ ┃ ┃ ┗ 📜YouTubePlaylist.tsx
+ ┃ ┗ 📜TubeDashPlayer.tsx    # Main component
  ┣ 📂hooks
- ┃ ┣ 📜usePlaylist.ts        # Hook for fetching YouTube playlist data
+ ┃ ┣ 📜useYouTubePlaylist.ts # Hook for fetching YouTube playlist data
  ┃ ┗ 📜useTruncateText.ts    # Hook for truncating text
  ┣ 📂styles
- ┃ ┗ 📜global.css            # Global styles
+ ┃ ┣ 📜global.css            # Global Styles
+ ┃ ┗ 📜themes.module.css     # Theme specific css
  ┣ 📂types
  ┃ ┗ 📜types.ts              # TypeScript types used across the app
  ┣ 📂utils
  ┃ ┗ 📜formatting.ts         # Utility functions like formatting
  ┣ 📜App.tsx                 # Main entry component for dev
+ ┣ 📜index.ts                # index export for npm package
  ┣ 📜main.tsx                # Main file for mounting React
  ┗ 📜vite-env.d.ts           # Vite environment types
 ```
 
 ## ⛓️‍💥 License
 
-TubeDashPlayer is open source and available under the [MIT License](LICENSE).
+TubeDashPlayer is open source and available under the [MIT License](LICENSE.md).
+
+## 📝 Changelog
+
+For a detailed list of changes, see the [CHANGELOG](CHANGELOG.md).

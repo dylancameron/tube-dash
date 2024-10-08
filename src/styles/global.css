@@ -1,31 +1,110 @@
 @tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-	--neutral: #1a202c;
-	--default: #fafafa;
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 215 20.2% 65.1%;
+
+    --radius: 0.5rem;
+
+    --font-sans: "Inter", sans-serif;
+    --font-mono: "Fira Code", monospace;
+    --font-serif: "Merriweather", serif;
+    --font-heading: var(--font-serif);
+  }
+
+  .dark {
+    --background: 0 0% 10%;
+    --foreground: 0 0% 90%;
+
+    --muted: 0 0% 20%; /* Dark gray muted */
+    --muted-foreground: 0 0% 70%; /* Light gray for muted text */
+
+    --accent: 0 0% 15%; /* Darker gray for accent */
+    --accent-foreground: 0 0% 90%; /* Lighter gray accent text */
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 90%;
+
+    --border: 0 0% 20%; /* Darker borders */
+    --input: 0 0% 20%;
+
+    --card: 0 0% 12%; /* Slightly lighter black for cards */
+    --card-foreground: 0 0% 90%;
+
+    --primary: 0 0% 90%; /* Lighter text for primary elements */
+    --primary-foreground: 0 0% 10%; /* Black for primary text foreground */
+
+    --secondary: 0 0% 70%; /* Light gray for secondary elements */
+    --secondary-foreground: 0 0% 90%;
+
+    --destructive: 0 63% 31%; /* Dark red for destructive actions */
+    --destructive-foreground: 0 0% 90%; /* Light foreground */
+
+    --ring: 0 0% 30%; /* Darker gray ring */
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 0;
+  }
 }
 
 /* Firefox */
 * {
-	scrollbar-width: thin;
-	scrollbar-color: var(--neutral) var(--default);
+  scrollbar-width: thin;
+  scrollbar-color: var(--foreground) var(--background);
 }
 
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-	width: 15px;
+  width: 10px;
 }
 
 *::-webkit-scrollbar-track {
-	background: var(--neutral);
-	border-radius: 5px;
+  background: var(--background);
+  border-radius: 5px;
 }
 
 *::-webkit-scrollbar-thumb {
-	background-color: var(--neutral);
-	border-radius: 14px;
-	border: 3px solid var(--default);
+  background-color: var(--foreground);
+  border-radius: 14px;
+  border: 2px solid var(--background);
 }
-
-@tailwind components;
-@tailwind utilities;

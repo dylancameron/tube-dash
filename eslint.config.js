@@ -27,6 +27,6 @@ export default tseslint.config(
 				{ allowConstantExport: true },
 			],
 		},
-		ignorePatterns: ["dist/", ".history/"],
+		ignorePatterns: ["dist/", ".history/", "node_modules/", "CHANGELOG.md"],
 	}
 );

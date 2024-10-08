@@ -1,135 +1,124 @@
+const { fontFamily } = require("tailwindcss/defaultTheme");
+
 /** @type {import('tailwindcss').Config} */
 export default {
-	content: ["./src/**/*.{js,ts,jsx,tsx}", "./index.html"],
-	darkMode: "class",
-	theme: {
-		extend: {
-			gridTemplateColumns: {
-				"auto-1fr": "auto 1fr",
-				"2fr-1fr": "2fr 1fr",
-			},
-			fontFamily: {
-				sans: ["Poppins", "sans-serif"],
-				serif: ["Merriweather", "serif"],
-				mono: ["Inconsolata", "monospace"],
-			},
-			colors: {
-				primary: {
-					50: "#EFF6FF",
-					100: "#DBEAFE",
-					200: "#BFDBFE",
-					300: "#93C5FD",
-					400: "#60A5FA",
-					500: "#3B82F6",
-					600: "#2563EB",
-					700: "#1D4ED8",
-					800: "#1E40AF",
-					900: "#1E3A8A",
-					dark: {
-						50: "#E0E7FF",
-						100: "#C7D2FE",
-						200: "#A5B4FC",
-						300: "#818CF8",
-						400: "#6366F1",
-						500: "#4F46E5",
-						600: "#4338CA",
-						700: "#3730A3",
-						800: "#312E81",
-						900: "#232554",
-					},
-				},
-				secondary: {
-					50: "#ECFDF5",
-					100: "#D1FAE5",
-					200: "#A7F3D0",
-					300: "#6EE7B7",
-					400: "#34D399",
-					500: "#10B981", // Default
-					600: "#059669",
-					700: "#047857",
-					800: "#065F46",
-					900: "#064E3B",
-					dark: {
-						50: "#D1FAE5",
-						100: "#A7F3D0",
-						200: "#6EE7B7",
-						300: "#34D399",
-						400: "#10B981",
-						500: "#059669",
-						600: "#047857",
-						700: "#065F46",
-						800: "#064E3B",
-						900: "#064E3B",
-					},
-				},
-				tertiary: {
-					50: "#FFFBEB",
-					100: "#FEF3C7",
-					200: "#FDE68A",
-					300: "#FCD34D",
-					400: "#FBBF24",
-					500: "#F59E0B", // Default
-					600: "#D97706",
-					700: "#B45309",
-					800: "#92400E",
-					900: "#78350F",
-					dark: {
-						50: "#FFF7ED",
-						100: "#FFEDD5",
-						200: "#FED7AA",
-						300: "#FDBA74",
-						400: "#FB923C",
-						500: "#F97316",
-						600: "#EA580C",
-						700: "#C2410C",
-						800: "#9A3412",
-						900: "#7C2D12",
-					},
-				},
-				default: {
-					50: "#F9FAFB",
-					100: "#F3F4F6",
-					200: "#E5E7EB",
-					300: "#D1D5DB",
-					400: "#9CA3AF",
-					500: "#6B7280", // Default
-					600: "#4B5563",
-					700: "#374151",
-					800: "#1F2937",
-					900: "#111827",
-					dark: {
-						50: "#F3F4F6",
-						100: "#E5E7EB",
-						200: "#D1D5DB",
-						300: "#9CA3AF",
-						400: "#6B7280",
-						500: "#4B5563",
-						600: "#374151",
-						700: "#1F2937",
-						800: "#111827",
-						900: "#0F172A",
-					},
-				},
-			},
-		},
-	},
-	variants: {
-		extend: {},
-	},
-	plugins: [
-		function ({ addBase, theme }) {
-			addBase({
-				":root": {
-					"--primary": theme("colors.primary.500"),
-					"--secondary": theme("colors.secondary.500"),
-					"--default": theme("colors.default.500"),
-				},
-				".dark": {
-					"--primary": theme("colors.primary.dark.500"),
-					"--secondary": theme("colors.secondary.dark.500"),
-					"--default": theme("colors.default.500"),
-				},
-			});
-		},
-	],
+  content: ["./src/**/*.{js,ts,jsx,tsx}", "./index.html"],
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+          dark: {
+            DEFAULT: "hsl(var(--primary-dark))",
+            foreground: "hsl(var(--primary-dark-foreground))",
+          },
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+          dark: {
+            DEFAULT: "hsl(var(--secondary-dark))",
+            foreground: "hsl(var(--secondary-dark-foreground))",
+          },
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        default: {
+          DEFAULT: "hsl(var(--default))",
+          foreground: "hsl(var(--default-foreground))",
+          dark: {
+            DEFAULT: "hsl(var(--default-dark))",
+            foreground: "hsl(var(--default-dark-foreground))",
+          },
+        },
+      },
+      gridTemplateColumns: {
+        "2fr-1fr": "2fr 1fr",
+      },
+      fontFamily: {
+        sans: ["var(--font-sans)", ...fontFamily.sans],
+        heading: ["var(--font-heading)", ...fontFamily.sans],
+        serif: ["var(--font-serif)", ...fontFamily.serif],
+        mono: ["var(--font-mono)", ...fontFamily.mono],
+      },
+      fontSize: {
+        "2xs": "0.625rem",
+        "3xs": "0.5rem",
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: 0 },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: 0 },
+        },
+        "fade-in": {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
+        },
+        "fade-out": {
+          "0%": { opacity: 1 },
+          "100%": { opacity: 0 },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in": "fade-in 0.5s ease-in",
+        "fade-out": "fade-out 0.5s ease-out",
+      },
+    },
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [
+    function ({ addBase, theme }) {
+      addBase({
+        ":root": {
+          "--primary": theme("colors.primary.DEFAULT"),
+          "--primary-foreground": theme("colors.primary.foreground"),
+          "--secondary": theme("colors.secondary.DEFAULT"),
+          "--secondary-foreground": theme("colors.secondary.foreground"),
+          "--default": theme("colors.default.DEFAULT"),
+          "--default-foreground": theme("colors.default.foreground"),
+        },
+        ".dark": {
+          "--primary": theme("colors.primary.dark.DEFAULT"),
+          "--primary-foreground": theme("colors.primary.dark.foreground"),
+          "--secondary": theme("colors.secondary.dark.DEFAULT"),
+          "--secondary-foreground": theme("colors.secondary.dark.foreground"),
+          "--default": theme("colors.default.dark.DEFAULT"),
+          "--default-foreground": theme("colors.default.dark.foreground"),
+        },
+      });
+    },
+  ],
 };

@@ -34,3 +34,5 @@ export type VideoSelectionHandler = (
 	videoId: string,
 	description: string
 ) => void;
+
+export type Theme = "light" | "dark" | "system" | "minimal";

@@ -1,6 +1,6 @@
 {
   "name": "tube-dash-player",
-  "version": "1.2.2",
+  "version": "1.3.0",
   "type": "module",
   "author": "Dylan Cameron <dylancameron@beggars.com> (https://beggars.com)",
   "description": "A resuable YouTube playlist and player component built with React",
@@ -37,13 +37,17 @@
     "@types/node": "^22.7.4",
     "@types/react": "^18.3.10",
     "@types/react-dom": "^18.3.0",
+    "@vite-pwa/assets-generator": "^0.2.6",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "eslint": "^9.11.1",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.12",
     "globals": "^15.9.0",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.8",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.7.0",
-    "vite": "^5.4.8"
+    "vite": "^5.4.8",
+    "vite-plugin-pwa": "^0.20.5"
   }
 }
