@@ -5,6 +5,6 @@ import "./styles/global.css";
 
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>
-		<App apiKey={""} playlistId={""} />
+		<App />
 	</StrictMode>
 );

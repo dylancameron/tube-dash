@@ -43,7 +43,7 @@ yarn add tube-dash-player
 You can also include the TubeDashPlayer script via CDN:
 
 ```html
-<script src="https://unpkg.com/tube-dash-player/dist/index.js"></script>
+<script src="https://unpkg.com/tube-dash-player@1.2.0/dist/tube-dash-player.umd.js"></script>
 ```
 
 ## 💡 Usage
@@ -73,18 +73,30 @@ export default App;
 If you're using the TubeDashPlayer script via CDN, you can use the component like this:
 
 ```html
-<script src="https://unpkg.com/tube-dash-player/dist/index.js"></script>
-<script>
-    const root = documnet.getElementByID("player");
-    ReactDOM.render(
-        React.createElement(TubeDashPlayer, {
-            apiKey: "YOUR_YOUTUBE_API_KEY",
-            playlistId: "YOUR_YOUTUBE_PLAYLIST_ID",
-        }),
-        root
-    );
-</script>
-<div id="player"></div>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="https://unpkg.com/tube-dash-player@1.2.0/dist/tube-dash-player.umd.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script>
+            const apiKey = "YOUR_YOUTUBE_API_KEY";
+            const playlistId = "YOUR_YOUTUBE_PLAYLIST_ID";
+
+            const App = () => {
+                return React.createElement(TubeDashPlayer, {
+                    apiKey,
+                    playlistId,
+                });
+            };
+
+            const root = ReactDOM.createRoot(document.getElementById("root"));
+            root.render(React.createElement(App));
+        </script>
+    </body>
+</html>
 ```
 
 ## 🏭 Props

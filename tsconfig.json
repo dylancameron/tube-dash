@@ -1,16 +1,11 @@
 {
-	"files": [],
-	"references": [
-		{ "path": "./tsconfig.app.json" },
-		{ "path": "./tsconfig.node.json" }
-	],
 	"compilerOptions": {
-		"forceConsistentCasingInFileNames": true,
-		"strict": true,
 		"target": "ES2022",
-		"lib": ["ES2022"],
 		"module": "ESNext",
+		"lib": ["ES2022", "DOM", "DOM.Iterable"],
+		"strict": true,
 		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
 		"moduleResolution": "Bundler",
 		"allowImportingTsExtensions": true,
 		"isolatedModules": true,
@@ -18,7 +13,18 @@
 		"noEmit": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
-		"noFallthroughCasesInSwitch": true
+		"noFallthroughCasesInSwitch": true,
+		"jsx": "react-jsx",
+		"paths": {
+			"@/*": ["./src/*"]
+		}
 	},
-	"exclude": ["node_modules", ".history"]
+	"include": ["src/**/*", "vite.config.ts"],
+	"exclude": ["node_modules", ".history"],
+	"ts-node": {
+		"compilerOptions": {
+			"target": "ES2022",
+			"module": "CommonJS"
+		}
+	}
 }

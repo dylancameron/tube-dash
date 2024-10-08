@@ -10,9 +10,14 @@ export const useYouTubePlaylist = (apiKey?: string, playlistId?: string) => {
 	useEffect(() => {
 		const fetchPlaylist = async () => {
 			try {
-				const API_KEY = apiKey || import.meta.env.VITE_YOUTUBE_API_KEY;
+				const API_KEY =
+					apiKey ||
+					(typeof import.meta !== "undefined" &&
+						import.meta.env.VITE_YOUTUBE_API_KEY);
 				const PLAYLIST_ID =
-					playlistId || import.meta.env.VITE_YOUTUBE_PLAYLIST_ID;
+					playlistId ||
+					(typeof import.meta !== "undefined" &&
+						import.meta.env.VITE_YOUTUBE_PLAYLIST_ID);
 
 				if (!API_KEY || !PLAYLIST_ID) {
 					throw new Error("Missing YouTube API Key or Playlist ID");

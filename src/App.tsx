@@ -1,12 +1,9 @@
 import React from "react";
 import TubeDashPlayer from "./components/TubeDashPlayer";
 
-interface Props {
-	apiKey: string;
-	playlistId: string;
-}
-
-const App: React.FC<Props> = ({ apiKey, playlistId }) => {
+const App: React.FC = () => {
+	const apiKey = import.meta.env.VITE_YOUTUBE_API_KEY as string;
+	const playlistId = import.meta.env.VITE_YOUTUBE_PLAYLIST_ID as string;
 	return <TubeDashPlayer apiKey={apiKey} playlistId={playlistId} />;
 };
 

@@ -1,5 +1,10 @@
 @tailwind base;
 
+:root {
+	--neutral: #1a202c;
+	--default: #fafafa;
+}
+
 /* Firefox */
 * {
 	scrollbar-width: thin;

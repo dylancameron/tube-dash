@@ -13,13 +13,7 @@ export default defineConfig({
 			formats: ["es", "umd"],
 		},
 		rollupOptions: {
-			external: ["react", "react-dom"],
-			output: {
-				globals: {
-					react: "React",
-					"react-dom": "ReactDOM",
-				},
-			},
+			external: [],
 		},
 	},
 	resolve: {
