@@ -83,8 +83,8 @@ If you're using the TubeDashPlayer script via CDN, you can use the component lik
 
         <script>
             document.addEventListener("DOMContentLoaded", () => {
-                const apiKey = "AIzaSyBcfNHi4zrm45rPWCKFyezy_3phcjJsn-k";
-                const playlistId = "PLUkpIIjyrx_u7y56VbMBuuMp1ifZlJ4yz";
+                const apiKey = "YOUR_YOUTUBE_API_KEY";
+                const playlistId = "YOUR_YOUTUBE_PLAYLIST_ID";
 
                 const App = () => {
                     return React.createElement(TubeDashPlayer, {
