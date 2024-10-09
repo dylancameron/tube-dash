@@ -4,9 +4,9 @@
     "axe/aria": [
       "default",
       {
-        "aria-roles": "off",
-      },
+        "aria-roles": "off"
+      }
     ],
-    "no-inline-styles": "off",
-  },
+    "no-inline-styles": "off"
+  }
 }

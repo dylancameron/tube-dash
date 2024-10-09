@@ -1,7 +1,7 @@
 import React from "react";
 import { YouTubeVideo, VideoSelectionHandler } from "@/types";
 import { truncateTextByLines } from "../../hooks/useTruncateText";
-import { formatDescription } from "@/utils/getFormatting";
+import { formatDescription } from "@/utils/formatting";
 
 interface Props {
   videos: YouTubeVideo[];
@@ -9,11 +9,7 @@ interface Props {
   maxLines?: number;
 }
 
-const YouTubePlaylist: React.FC<Props> = ({
-  videos,
-  onVideoSelect,
-  maxLines,
-}) => {
+const YouTubePlaylist: React.FC<Props> = ({ videos, onVideoSelect, maxLines }) => {
   return (
     <>
       {videos.map((video) => {
@@ -29,15 +25,11 @@ const YouTubePlaylist: React.FC<Props> = ({
               alt={video.title}
             />
             <div className="flex flex-col py-2">
-              <h3 className="text-default-900 text-xs font-semibold">
-                {video.title}
-              </h3>
+              <h3 className="text-default-900 text-xs font-semibold">{video.title}</h3>
               <p
                 className="text-default-900 max-h-[50px] overflow-hidden text-xs"
                 dangerouslySetInnerHTML={{
-                  __html: formatDescription(
-                    truncateTextByLines(video.description, maxLines),
-                  ),
+                  __html: formatDescription(truncateTextByLines(video.description, maxLines))
                 }}
               />
             </div>

@@ -16,11 +16,11 @@
 
 ## 📌 Features
 
--   Displays a video player, playlist, and video descriptions.
--   Configurable YouTube API key and Playlist ID.
--   Built with React and TypeScript for type safety and maintainability.
--   TailwindCSS integration for customizable UI.
--   Modular architecture for easy component reuse.
+- Displays a video player, playlist, and video descriptions.
+- Configurable YouTube API key and Playlist ID.
+- Built with React and TypeScript for type safety and maintainability.
+- TailwindCSS integration for customizable UI.
+- Modular architecture for easy component reuse.
 
 ## 🛠️ Installation
 
@@ -75,33 +75,31 @@ export default App;
 If you're using the TubeDashPlayer script via CDN, you can use the component like this:
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <script src="https://unpkg.com/tube-dash-player/dist/tube-dash-player.umd.js"></script>
-    </head>
-    <body>
-        <div id="root"></div>
+  <head>
+    <script src="https://unpkg.com/tube-dash-player/dist/tube-dash-player.umd.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", () => {
-                const apiKey = "YOUR_YOUTUBE_API_KEY";
-                const playlistId = "YOUR_YOUTUBE_PLAYLIST_ID";
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const apiKey = "YOUR_YOUTUBE_API_KEY";
+        const playlistId = "YOUR_YOUTUBE_PLAYLIST_ID";
 
-                const App = () => {
-                    return React.createElement(TubeDashPlayer, {
-                        apiKey: apiKey,
-                        playlistId: playlistId,
-                    });
-                };
+        const App = () => {
+          return React.createElement(TubeDashPlayer, {
+            apiKey: apiKey,
+            playlistId: playlistId
+          });
+        };
 
-                const root = ReactDOM.createRoot(
-                    document.getElementById("root")
-                );
-                root.render(React.createElement(App));
-            });
-        </script>
-    </body>
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(React.createElement(App));
+      });
+    </script>
+  </body>
 </html>
 ```
 
@@ -122,17 +120,15 @@ If you need a more secure setup, we recommend proxying requests through a backen
 ```js
 // Example backend API
 app.get("/youtube-playlist", (req, res) => {
-    const apiKey = process.env.YOUTUBE_API_KEY;
-    const playlistId = req.query.playlistId;
+  const apiKey = process.env.YOUTUBE_API_KEY;
+  const playlistId = req.query.playlistId;
 
-    axios
-        .get(`https://www.googleapis.com/youtube/v3/playlistItems`, {
-            params: { part: "snippet", playlistId, key: apiKey },
-        })
-        .then((response) => res.json(response.data))
-        .catch((error) =>
-            res.status(500).json({ error: "Failed to fetch playlist" })
-        );
+  axios
+    .get(`https://www.googleapis.com/youtube/v3/playlistItems`, {
+      params: { part: "snippet", playlistId, key: apiKey }
+    })
+    .then((response) => res.json(response.data))
+    .catch((error) => res.status(500).json({ error: "Failed to fetch playlist" }));
 });
 ```
 
@@ -142,10 +138,10 @@ The `TubeDashPlayer` component accepts the following props:
 
 ### apiKey
 
--   **Type:** `string`
--   **Required:** `true`
--   **Description:** Your YouTube API key. If not provided or invalid, the component will not render.
--   **Usage:**
+- **Type:** `string`
+- **Required:** `true`
+- **Description:** Your YouTube API key. If not provided or invalid, the component will not render.
+- **Usage:**
 
 ```tsx
 <TubeDashPlayer apiKey="YOUR_YOUTUBE_API_KEY" />
@@ -153,10 +149,10 @@ The `TubeDashPlayer` component accepts the following props:
 
 ### playlistId
 
--   **Type:** `string`
--   **Required:** `true`
--   **Description:** Your YouTube playlist ID. If not provided or invalid, the component will not render.
--   **Usage:**
+- **Type:** `string`
+- **Required:** `true`
+- **Description:** Your YouTube playlist ID. If not provided or invalid, the component will not render.
+- **Usage:**
 
 ```tsx
 <TubeDashPlayer playlistId="YOUR_YOUTUBE_PLAYLIST_ID" />
@@ -164,10 +160,10 @@ The `TubeDashPlayer` component accepts the following props:
 
 ### theme
 
--   **Type:** `string`
--   **Default:** `"light"`
--   **Description:** The theme of the player. Options are `"light"`, `"dark"`, `"minimal"`, and `"auto"`.
--   **Usage:**
+- **Type:** `string`
+- **Default:** `"light"`
+- **Description:** The theme of the player. Options are `"light"`, `"dark"`, `"minimal"`, and `"auto"`.
+- **Usage:**
 
 ```tsx
 <TubeDashPlayer theme="dark" />
@@ -211,13 +207,15 @@ The TubeDashPlayer project follows a modular structure for easy scalability and 
  ┣ 📂components
  ┃ ┣ 📂common                # Shared components across the app
  ┃ ┃ ┣ 📜Drawers.tsx
- ┃ ┃ ┣ 📜Skeleton.tsx        # Loading and undefined skeletons
+ ┃ ┃ ┣ 📜Skeleton.tsx        # Loading skeletons
  ┃ ┃ ┗ 📜TruncateText.tsx
  ┃ ┣ 📂player                # Components related to the player
  ┃ ┃ ┣ 📜Description.tsx
  ┃ ┃ ┣ 📜YouTubePlayer.tsx
  ┃ ┃ ┗ 📜YouTubePlaylist.tsx
  ┃ ┗ 📜TubeDashPlayer.tsx    # Main component
+ ┣ 📂context
+ ┃ ┗ 📜TubeContext.tsx       # Context provider for state management
  ┣ 📂hooks
  ┃ ┣ 📜useYouTubePlaylist.ts # Hook for fetching YouTube playlist data
  ┃ ┗ 📜useTruncateText.ts    # Hook for truncating text
@@ -225,9 +223,10 @@ The TubeDashPlayer project follows a modular structure for easy scalability and 
  ┃ ┣ 📜global.css            # Global Styles
  ┃ ┗ 📜themes.module.css     # Theme specific css
  ┣ 📂types
- ┃ ┗ 📜types.ts              # TypeScript types used across the app
+ ┃ ┗ 📜index.d.ts            # TypeScript types used across the app
  ┣ 📂utils
- ┃ ┗ 📜formatting.ts         # Utility functions like formatting
+ ┃ ┣ 📜formatting.ts         # Utility functions like formatting
+ ┃ ┗ 📜theme.ts              # Theme helpers
  ┣ 📜App.tsx                 # Main entry component for dev
  ┣ 📜index.ts                # index export for npm package
  ┣ 📜main.tsx                # Main file for mounting React

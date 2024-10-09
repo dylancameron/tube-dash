@@ -1,16 +1,17 @@
 /** @type {import('prettier').Config} */
 module.exports = {
-  semi: false,
+  semi: true,
   singleQuote: false,
   tabWidth: 2,
   importOrder: [
-    "^(react/(.*)$)|^(react$)",
-    "",
-    "^(src/(.*)$)|^(\\./)",
-    "^[^.]",
-    "^\\.",
+    "^(react/(.*)$)|^(react$)", // React-related imports
+    "<THIRD_PARTY_MODULES>", // External dependencies (e.g., lodash, axios)
+    "^src/", // Project files
+    "^@/", // Aliases
+    "^\\./",
+    "^\\.."
   ],
-  importOrderSeparation: false,
+  importOrderSeparation: true,
   importOrderSortSpecifiers: true,
   importOrderBuiltinModulesToTop: true,
   importOrderParserPlugins: [
@@ -19,6 +20,6 @@ module.exports = {
     "decorators-legacy",
     "classProperties",
     "classPrivateProperties",
-    "classPrivateMethods",
-  ],
+    "classPrivateMethods"
+  ]
 };

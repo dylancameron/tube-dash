@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { formatPublishedDate, formatDescription } from "@/utils/getFormatting";
+import { formatPublishedDate, formatDescription } from "@/utils/formatting";
 
 interface Props {
   title: string;
@@ -37,9 +37,7 @@ const Description: React.FC<Props> = ({ title, description, publishedAt }) => {
       <div
         className="text-default-900 whitespace-pre-wrap text-sm"
         dangerouslySetInnerHTML={{
-          __html: isTruncated
-            ? truncateTextByLines(formattedDescription, 3)
-            : formattedDescription,
+          __html: isTruncated ? truncateTextByLines(formattedDescription, 3) : formattedDescription
         }}
       />
       {!isTruncated && (
@@ -51,9 +49,7 @@ const Description: React.FC<Props> = ({ title, description, publishedAt }) => {
           Show less
         </button>
       )}
-      <p className="text-default-500 mt-1 text-xs">
-        {formatPublishedDate(publishedAt)}
-      </p>
+      <p className="text-default-500 mt-1 text-xs">{formatPublishedDate(publishedAt)}</p>
     </div>
   );
 };

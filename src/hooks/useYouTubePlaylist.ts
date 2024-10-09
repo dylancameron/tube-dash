@@ -11,13 +11,10 @@ export const useYouTubePlaylist = (apiKey?: string, playlistId?: string) => {
     const fetchPlaylist = async () => {
       try {
         const API_KEY =
-          apiKey ||
-          (typeof import.meta !== "undefined" &&
-            import.meta.env.VITE_YOUTUBE_API_KEY);
+          apiKey || (typeof import.meta !== "undefined" && import.meta.env.VITE_YOUTUBE_API_KEY);
         const PLAYLIST_ID =
           playlistId ||
-          (typeof import.meta !== "undefined" &&
-            import.meta.env.VITE_YOUTUBE_PLAYLIST_ID);
+          (typeof import.meta !== "undefined" && import.meta.env.VITE_YOUTUBE_PLAYLIST_ID);
 
         if (!API_KEY || !PLAYLIST_ID) {
           throw new Error("Missing YouTube API Key or Playlist ID");
@@ -32,7 +29,7 @@ export const useYouTubePlaylist = (apiKey?: string, playlistId?: string) => {
           thumbnail: item.snippet.thumbnails.default.url,
           videoId: item.snippet.resourceId.videoId,
           description: item.snippet.description,
-          publishedAt: item.snippet.publishedAt,
+          publishedAt: item.snippet.publishedAt
         }));
 
         setVideos(videoItems);
